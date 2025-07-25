@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrestling Platform Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .wireframe-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #495057;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+
+        .wireframe-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .wireframe-nav button {
+            background: white;
+            border: 2px solid #6c757d;
+            color: #495057;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .wireframe-nav button:hover,
+        .wireframe-nav button.active {
+            background: #6c757d;
+            color: white;
+        }
+
+        .wireframe {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .wireframe.active {
+            display: block;
+        }
+
+        .wireframe-header {
+            background: linear-gradient(135deg, #6c757d 0%, #868e96 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wireframe-title {
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .wireframe-role {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .phone-frame {
+            width: 350px;
+            height: 600px;
+            margin: 30px auto;
+            background: #333;
+            border-radius: 25px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .status-bar {
+            background: #000;
+            color: white;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 0.8em;
+        }
+
+        .app-header {
+            background: #6c757d;
+            color: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .app-content {
+            padding: 20px;
+            height: calc(100% - 150px);
+            overflow-y: auto;
+        }
+
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            background: currentColor;
+            border-radius: 3px;
+            margin-bottom: 4px;
+        }
+
+        /* Component Styles */
+        .search-bar {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            background: #e9ecef;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.8em;
+            color: #495057;
+        }
+
+        .chip.active {
+            background: #6c757d;
+            color: white;
+        }
+
+        .gig-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .gig-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .gig-title {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.9em;
+        }
+
+        .gig-pay {
+            background: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .gig-details {
+            font-size: 0.8em;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .gig-tags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 0.7em;
+            color: #6c757d;
+        }
+
+        .btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-size: 0.8em;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .profile-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .stat-label {
+            font-size: 0.7em;
+            color: #6c757d;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.8em;
+            color: #495057;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 0.8em;
+        }
+
+        .rate-insight {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .rate-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .rate-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+
+        .rate-context {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+
+        .booking-item {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .booking-date {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.9em;
+        }
+
+        .booking-venue {
+            color: #6c757d;
+            font-size: 0.8em;
+            margin: 5px 0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .floating-add {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .phone-frame {
+                width: 300px;
+                height: 550px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <div class="header">
+            <h1>Wrestling Platform UI Wireframes</h1>
+            <p>Interactive mockups showing key user flows and interface design</p>
+        </div>
+
+        <div class="wireframe-nav">
+            <button class="active" onclick="showWireframe('onboarding')">Onboarding</button>
+            <button onclick="showWireframe('wrestler-dashboard')">Wrestler Dashboard</button>
+            <button onclick="showWireframe('gig-discovery')">Gig Discovery</button>
+            <button onclick="showWireframe('gig-detail')">Gig Detail</button>
+            <button onclick="showWireframe('rate-insights')">Rate Insights</button>
+            <button onclick="showWireframe('promoter-dashboard')">Promoter Dashboard</button>
+            <button onclick="showWireframe('create-gig')">Create Gig</button>
+            <button onclick="showWireframe('bookings')">Bookings</button>
+        </div>
+
+        <!-- Onboarding Flow -->
+        <div id="onboarding" class="wireframe active">
+            <div class="wireframe-header">
+                <div class="wireframe-title">User Onboarding & Role Selection</div>
+                <div class="wireframe-role">New User</div>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="app-header">
+                        <div style="font-weight: 600;">Welcome to WrestleConnect</div>
+                    </div>
+                    <div class="app-content">
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <div style="width: 80px; height: 80px; background: #6c757d; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em;">🤼</div>
+                            <h3 style="color: #495057; margin-bottom: 10px;">Choose Your Role</h3>
+                            <p style="color: #6c757d; font-size: 0.9em;">Select how you'll be using the platform</p>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <div style="border: 2px solid #007bff; background: #f8f9fa; border-radius: 12px; padding: 20px; margin-bottom: 15px; cursor: pointer;">
+                                <div style="font-weight: 600; color: #495057; margin-bottom: 5px;">🥊 Wrestler</div>
+                                <div style="font-size: 0.8em; color: #6c757d;">Find gigs, connect with promoters, share rates with peers</div>
+                            </div>
+
+                            <div style="border: 2px solid #dee2e6; background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; cursor: pointer;">
+                                <div style="font-weight: 600; color: #495057; margin-bottom: 5px;">🎪 Promoter</div>
+                                <div style="font-size: 0.8em; color: #6c757d;">Post events, find talent, manage bookings</div>
+                            </div>
+
+                            <div style="border: 2px solid #dee2e6; background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; cursor: pointer;">
+                                <div style="font-weight: 600; color: #495057; margin-bottom: 5px;">🏟️ Venue</div>
+                                <div style="font-size: 0.8em; color: #6c757d;">List your space, manage availability</div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary">Continue as Wrestler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wrestler Dashboard -->
+        <div id="wrestler-dashboard" class="wireframe">
+            <div class="wireframe-header">
+                <div class="wireframe-title">Wrestler Dashboard</div>
+                <div class="wireframe-role">Wrestler View</div>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="app-header">
+                        <div style="font-weight: 600;">Welcome back, Alex</div>
+                        <div style="width: 30px; height: 30px; background: white; border-radius: 50%; opacity: 0.8;"></div>
+                    </div>
+                    <div class="app-content">
+                        <div class="stat-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Total Bookings</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">$2,840</div>
+                                <div class="stat-label">Total Earned</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">Upcoming Bookings</div>
+                            <div class="booking-item">
+                                <div class="booking-date">March 15, 2025</div>
+                                <div class="booking-venue">Downtown Arena • Chicago, IL</div>
+                                <span class="status-badge status-confirmed">Confirmed</span>
+                            </div>
+                            <div class="booking-item">
+                                <div class="booking-date">March 22, 2025</div>
+                                <div class="booking-venue">Riverside Bar • Milwaukee, WI</div>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">Quick Actions</div>
+                            <button class="btn" style="margin-bottom: 10px;">Browse Available Gigs</button>
+                            <button class="btn" style="background: #28a745;">View Rate Insights</button>
+                        </div>
+                    </div>
+                    <div class="bottom-nav">
+                        <div class="nav-item active">
+                            <div class="nav-icon"></div>
+                            <div>Home</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Gigs</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Bookings</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Insights</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Profile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gig Discovery -->
+        <div id="gig-discovery" class="wireframe">
+            <div class="wireframe-header">
+                <div class="wireframe-title">Gig Discovery & Search</div>
+                <div class="wireframe-role">Wrestler View</div>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="app-header">
+                        <div style="font-weight: 600;">Find Gigs</div>
+                        <div style="width: 20px; height: 20px; background: white; border-radius: 3px; opacity: 0.8;"></div>
+                    </div>
+                    <div class="app-content">
+                        <input type="text" class="search-bar" placeholder="Search by location, promoter, or event type...">
+                        
+                        <div class="filter-chips">
+                            <div class="chip active">All</div>
+                            <div class="chip">This Week</div>
+                            <div class="chip">$200+</div>
+                            <div class="chip">Midwest</div>
+                        </div>
+
+                        <div class="gig-card">
+                            <div class="gig-header">
+                                <div class="gig-title">Saturday Night Wrestling</div>
+                                <div class="gig-pay">$350</div>
+                            </div>
+                            <div class="gig-details">
+                                📅 March 18, 2025 • 7:00 PM<br>
+                                📍 Chicago Wrestling Federation • Chicago, IL<br>
+                                ⏱️ Posted 2 hours ago
+                            </div>
+                            <div class="gig-tags">
+                                <div class="tag">Singles Match</div>
+                                <div class="tag">Mid-card</div>
+                                <div class="tag">300 capacity</div>
+                            </div>
+                            <button class="btn btn-primary">View Details</button>
+                        </div>
+
+                        <div class="gig-card">
+                            <div class="gig-header">
+                                <div class="gig-title">Spring Showdown</div>
+                                <div class="gig-pay">$500</div>
+                            </div>
+                            <div class="gig-details">
+                                📅 March 25, 2025 • 8:00 PM<br>
+                                📍 Metro Arena • Detroit, MI<br>
+                                ⏱️ Posted 1 day ago
+                            </div>
+                            <div class="gig-tags">
+                                <div class="tag">Tag Team</div>
+                                <div class="tag">Main Event</div>
+                                <div class="tag">800 capacity</div>
+                            </div>
+                            <button class="btn btn-primary">View Details</button>
+                        </div>
+
+                        <div class="gig-card">
+                            <div class="gig-header">
+                                <div class="gig-title">Local Heroes Night</div>
+                                <div class="gig-pay">$200</div>
+                            </div>
+                            <div class="gig-details">
+                                📅 March 20, 2025 • 9:00 PM<br>
+                                📍 Riverside Bar • Milwaukee, WI<br>
+                                ⏱️ Posted 3 days ago
+                            </div>
+                            <div class="gig-tags">
+                                <div class="tag">Singles Match</div>
+                                <div class="tag">Opening</div>
+                                <div class="tag">150 capacity</div>
+                            </div>
+                            <button class="btn btn-primary">View Details</button>
+                        </div>
+                    </div>
+                    <div class="bottom-nav">
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Home</div>
+                        </div>
+                        <div class="nav-item active">
+                            <div class="nav-icon"></div>
+                            <div>Gigs</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Bookings</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Insights</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Profile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gig Detail -->
+        <div id="gig-detail" class="wireframe">
+            <div class="wireframe-header">
+                <div class="wireframe-title">Gig Detail & Application</div>
+                <div class="wireframe-role">Wrestler View</div>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="app-header">
+                        <div style="width: 20px; height: 20px; background: white; border-radius: 3px; opacity: 0.8;"></div>
+                        <div style="font-weight: 600;">Gig Details</div>
+                        <div style="width: 20px; height: 20px; background: white; border-radius: 3px; opacity: 0.8;"></div>
+                    </div>
+                    <div class="app-content">
+                        <div style="background: #007bff; color: white; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                            <h3 style="margin-bottom: 10px;">Saturday Night Wrestling</h3>
+                            <div style="font-size: 1.2em; font-weight: 600; margin-bottom: 5px;">$350 Payment</div>
+                            <div style="opacity: 0.9;">📅 March 18, 2025 • 7:00 PM</div>
+                            <div style="opacity: 0.9;">📍 Chicago Wrestling Federation</div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">Event Details</div>
+                            <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <div style="margin-bottom: 10px;"><strong>Match Type:</strong> Singles Match</div>
+                                <div style="margin-bottom: 10px;"><strong>Position:</strong> Mid-card</div>
+                                <div style="margin-bottom: 10px;"><strong>Venue Capacity:</strong> 300</div>
+                                <div style="margin-bottom: 10px;"><strong>Travel:</strong> Not covered</div>
+                                <div><strong>Experience Required:</strong> 2+ years</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">About the Promoter</div>
+                            <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">Chicago Wrestling Federation</div>
+                                <div style="font-size: 0.8em; color: #6c757d; margin-bottom: 10px;">⭐ 4.8/5 (24 reviews)</div>
+                                <div style="font-size: 0.8em;">Established promotion running monthly shows in the Chicago area. Known for professional production and reliable payments.</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">Application</div>
+                            <textarea class="form-control" rows="3" placeholder="Tell us why you're a good fit for this event..."></textarea>
+                            <button class="btn btn-success" style="margin-top: 10px;">Apply for This Gig</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rate Insights -->
+        <div id="rate-insights" class="wireframe">
+            <div class="wireframe-header">
+                <div class="wireframe-title">Rate Insights & Market Data</div>
+                <div class="wireframe-role">Wrestler View</div>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="app-header">
+                        <div style="font-weight: 600;">Rate Insights</div>
+                        <div style="width: 20px; height: 20px; background: white; border-radius: 3px; opacity: 0.8;"></div>
+                    </div>
+                    <div class="app-content">
+                        <div class="rate-insight">
+                            <div class="rate-title">Your Tier Average (Midwest)</div>
+                            <div class="rate-value">$320 per booking</div>
+                            <div class="rate-context">Range: $200 - $500 • Based on 47 bookings</div>
+                        </div>
+
+                        <div class="rate-insight">
+                            <div class="rate-title">Spring 2025 Trend</div>
+                            <div class="rate-value">↗️ Up 8% from Winter</div>
+                            <div class="rate-context">Regional rates increasing across most venue types</div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">By Venue Type</div>
+                            <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 0.8em;">Small Venues (100-200)</span>
+                                    <strong>$180-280</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 0.8em;">Mid Venues (200-500)</span>
+                                    <strong>$300-450</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-size: 0.8em;">Large Venues (500+)</span>
+                                    <strong>$500-800</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">Share Your Data</div>
+                            <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px;">
+                                <div style="margin-bottom: 10px; font-weight: 600; font-size: 0.9em; color: #495057;">Help the community by sharing rates</div>
+                                <div style="font-size: 0.8em; color: #6c757d; margin-bottom: 15px;">Your data stays anonymous and wrestler-only. Get better insights by contributing.</div>
+                                <label style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <input type="checkbox" style="margin-right: 8px;">
+                                    <span style="font-size: 0.8em;">Auto-share rates from future bookings</span>
+                                </label>
+                                <button class="btn">Share Last Booking Rate</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-nav">
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Home</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Gigs</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Bookings</div>
+                        </div>
+                        <div class="nav-item active">
+                            <div class="nav-icon"></div>
+                            <div>Insights</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Profile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promoter Dashboard -->
+        <div id="promoter-dashboard" class="wireframe">
+            <div class="wireframe-header">
+                <div class="wireframe-title">Promoter Dashboard</div>
+                <div class="wireframe-role">Promoter View</div>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="app-header">
+                        <div style="font-weight: 600;">Chicago Wrestling Fed</div>
+                        <div style="width: 30px; height: 30px; background: white; border-radius: 50%; opacity: 0.8;"></div>
+                    </div>
+                    <div class="app-content">
+                        <div class="stat-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">Active Listings</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">23</div>
+                                <div class="stat-label">Applications</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">Recent Applications</div>
+                            <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <div style="font-weight: 600; font-size: 0.9em;">Alex Rodriguez</div>
+                                    <div style="font-size: 0.7em; color: #6c757d;">2 hours ago</div>
+                                </div>
+                                <div style="font-size: 0.8em; color: #6c757d; margin-bottom: 8px;">Applied for: Saturday Night Wrestling</div>
+                                <div style="font-size: 0.8em; margin-bottom: 10px;">"5 years experience, strong technical style, available for travel..."</div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button style="background: #28a745; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">Accept</button>
+                                    <button style="background: #6c757d; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">Message</button>
+                                </div>
+                            </div>
+
+                            <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <div style="font-weight: 600; font-size: 0.9em;">Maria Santos</div>
+                                    <div style="font-size: 0.7em; color: #6c757d;">4 hours ago</div>
+                                </div>
+                                <div style="font-size: 0.8em; color: #6c757d; margin-bottom: 8px;">Applied for: Spring Showdown</div>
+                                <div style="font-size: 0.8em; margin-bottom: 10px;">"Tag team specialist, worked major venues, great crowd work..."</div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button style="background: #28a745; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">Accept</button>
+                                    <button style="background: #6c757d; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">Message</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <div class="section-title">Upcoming Events</div>
+                            <div class="booking-item">
+                                <div class="booking-date">March 18, 2025</div>
+                                <div class="booking-venue">Saturday Night Wrestling • 6 wrestlers booked</div>
+                                <span class="status-badge status-confirmed">Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floating-add">+</div>
+                    <div class="bottom-nav">
+                        <div class="nav-item active">
+                            <div class="nav-icon"></div>
+                            <div>Home</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Listings</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Applications</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Events</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Profile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Gig -->
+        <div id="create-gig" class="wireframe">
+            <div class="wireframe-header">
+                <div class="wireframe-title">Create New Gig Listing</div>
+                <div class="wireframe-role">Promoter View</div>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="app-header">
+                        <div style="width: 20px; height: 20px; background: white; border-radius: 3px; opacity: 0.8;"></div>
+                        <div style="font-weight: 600;">Create Gig</div>
+                        <div style="color: #007bff; font-weight: 600;">Save</div>
+                    </div>
+                    <div class="app-content">
+                        <div class="form-group">
+                            <label class="form-label">Event Name *</label>
+                            <input type="text" class="form-control" placeholder="e.g., Saturday Night Wrestling">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Date & Time *</label>
+                            <input type="datetime-local" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Venue *</label>
+                            <select class="form-control">
+                                <option>Select venue...</option>
+                                <option>Downtown Arena</option>
+                                <option>Riverside Bar</option>
+                                <option>Metro Center</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Payment Amount *</label>
+                            <input type="number" class="form-control" placeholder="350" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Match Type *</label>
+                            <select class="form-control">
+                                <option>Singles Match</option>
+                                <option>Tag Team Match</option>
+                                <option>Multi-Person Match</option>
+                                <option>Special Attraction</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Position</label>
+                            <select class="form-control">
+                                <option>Opening</option>
+                                <option>Mid-card</option>
+                                <option>Semi-main</option>
+                                <option>Main Event</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Requirements</label>
+                            <textarea class="form-control" rows="3" placeholder="Experience level, special skills, character requirements..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center;">
+                                <input type="checkbox" style="margin-right: 8px;">
+                                <span style="font-size: 0.8em;">Travel expenses covered</span>
+                            </label>
+                        </div>
+
+                        <button class="btn btn-success">Post Gig</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bookings -->
+        <div id="bookings" class="wireframe">
+            <div class="wireframe-header">
+                <div class="wireframe-title">Bookings Management</div>
+                <div class="wireframe-role">Wrestler View</div>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="app-header">
+                        <div style="font-weight: 600;">My Bookings</div>
+                        <div style="width: 20px; height: 20px; background: white; border-radius: 3px; opacity: 0.8;"></div>
+                    </div>
+                    <div class="app-content">
+                        <div class="filter-chips">
+                            <div class="chip active">Upcoming</div>
+                            <div class="chip">Past</div>
+                            <div class="chip">Pending</div>
+                        </div>
+
+                        <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <div>
+                                    <div style="font-weight: 600; color: #495057; margin-bottom: 5px;">Saturday Night Wrestling</div>
+                                    <div style="font-size: 0.8em; color: #6c757d;">March 18, 2025 • 7:00 PM</div>
+                                    <div style="font-size: 0.8em; color: #6c757d;">Downtown Arena, Chicago</div>
+                                </div>
+                                <span class="status-badge status-confirmed">Confirmed</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div style="font-size: 0.8em; color: #6c757d;">vs. Mike Thompson • Singles Match</div>
+                                <div style="font-weight: 600; color: #28a745;">$350</div>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button style="background: #6c757d; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">Message Promoter</button>
+                                <button style="background: #007bff; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">View Details</button>
+                            </div>
+                        </div>
+
+                        <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <div>
+                                    <div style="font-weight: 600; color: #495057; margin-bottom: 5px;">Spring Showdown</div>
+                                    <div style="font-size: 0.8em; color: #6c757d;">March 25, 2025 • 8:00 PM</div>
+                                    <div style="font-size: 0.8em; color: #6c757d;">Metro Arena, Detroit</div>
+                                </div>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div style="font-size: 0.8em; color: #6c757d;">Tag Team Match • Main Event</div>
+                                <div style="font-weight: 600; color: #28a745;">$500</div>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button style="background: #dc3545; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">Withdraw</button>
+                                <button style="background: #007bff; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">View Details</button>
+                            </div>
+                        </div>
+
+                        <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <div>
+                                    <div style="font-weight: 600; color: #495057; margin-bottom: 5px;">Local Heroes Night</div>
+                                    <div style="font-size: 0.8em; color: #6c757d;">March 20, 2025 • 9:00 PM</div>
+                                    <div style="font-size: 0.8em; color: #6c757d;">Riverside Bar, Milwaukee</div>
+                                </div>
+                                <span class="status-badge status-confirmed">Confirmed</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div style="font-size: 0.8em; color: #6c757d;">vs. TBD • Opening Match</div>
+                                <div style="font-weight: 600; color: #28a745;">$200</div>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button style="background: #6c757d; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">Message Promoter</button>
+                                <button style="background: #007bff; color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.7em;">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-nav">
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Home</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Gigs</div>
+                        </div>
+                        <div class="nav-item active">
+                            <div class="nav-icon"></div>
+                            <div>Bookings</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Insights</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon"></div>
+                            <div>Profile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showWireframe(wireframeId) {
+            // Hide all wireframes
+            const wireframes = document.querySelectorAll('.wireframe');
+            wireframes.forEach(w => w.classList.remove('active'));
+            
+            // Remove active class from all nav buttons
+            const navButtons = document.querySelectorAll('.wireframe-nav button');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected wireframe
+            document.getElementById(wireframeId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
